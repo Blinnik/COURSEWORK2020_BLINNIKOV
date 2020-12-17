@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>Списки</h1>
+    {% if lists %}
+        {% for el in lists %}
+<!--alert alert-warning mt-2 -->
+            <div class="list list-blue mt-2">
+                <div style="float:left"><h3>{{ el.title }}</h3></div>
+                <div style="float:right">
+                    <a class="delete-btn" href="delete/{{ el.id }}">Удалить </a>
+                </div>
+                <div class="col"><p>{{ el.list|linebreaks }}</p></div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Списков пока нет. <a href="{% url 'create' %}">Создать список</a></p>
+
+    {% endif %}
+{% endblock %}
